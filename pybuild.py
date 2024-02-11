@@ -12,6 +12,8 @@ class PyPackageJson(TypedDict):
     dependencies: list[str]
 
 
+VERSION = "1.0"
+
 DEFAULT_CONFIG: PyPackageJson = {
     "venv_dir": ".venv",
     "dependencies": [],
@@ -19,7 +21,7 @@ DEFAULT_CONFIG: PyPackageJson = {
 
 
 def print_usage():
-    print("pybuild.py")
+    print("pybuild.py", VERSION)
     print()
     print("  init <venv-dir>")
     print("    Init pypackage.json and create virtual env")
