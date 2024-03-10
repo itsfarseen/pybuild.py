@@ -245,6 +245,12 @@ def cmd_init(args):
         print_usage()
         exit(-1)
 
+    if len(args) < 1:
+        print("Error: Too few options received.")
+        print()
+        print_usage()
+        exit(-1)
+    
     venv_dir = args[0]
 
     if os.path.isfile("pypackage.json"):
