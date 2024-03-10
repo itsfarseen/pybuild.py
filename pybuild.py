@@ -12,7 +12,7 @@ class PyPackageJson(TypedDict):
     dependencies: list[str]
 
 
-VERSION = "1.0.1"
+VERSION = "1.1.0"
 
 DEFAULT_CONFIG: PyPackageJson = {
     "venv_dir": ".venv",
@@ -149,7 +149,7 @@ def pip_get_installed(config: PyPackageJson, uninstall_base_packages=False):
     )
     installed_json = json.loads(stdout)
     installed = [
-        x["name"]
+        x["name"].lower()
         for x in installed_json
         if not uninstall_base_packages or x["name"] not in base_packages
     ]
@@ -250,7 +250,7 @@ def cmd_init(args):
         print()
         print_usage()
         exit(-1)
-    
+
     venv_dir = args[0]
 
     if os.path.isfile("pypackage.json"):
@@ -275,6 +275,7 @@ def cmd_add(args):
 
     config = load_pypackagejson()
     packages = args
+    to_lowercase(packages)
 
     for p in packages:
         if p not in config["dependencies"]:
@@ -293,6 +294,7 @@ def cmd_rm(args):
 
     config = load_pypackagejson()
     packages = args
+    to_lowercase(packages)
 
     config["dependencies"] = [p for p in config["dependencies"] if p not in packages]
 
@@ -308,6 +310,11 @@ def cmd_sync(args):
 
     config = load_pypackagejson()
     sync_deps(config)
+
+
+def to_lowercase(list):
+    for i in range(len(list)):
+        list[i] = list[i].lower()
 
 
 if __name__ == "__main__":
