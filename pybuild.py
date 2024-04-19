@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import json
 import subprocess as sp
@@ -115,7 +115,7 @@ def run(cmd, can_fail=False, capture_stdout=False):
 def create_venv(config: PyPackageJson):
     venv_dir = config["venv_dir"]
     print("Creating virtual env in", venv_dir)
-    run(["python", "-m", "venv", venv_dir])
+    run(["python3", "-m", "venv", venv_dir])
 
 
 def ensure_venv(config: PyPackageJson, log_if_exists=False):
