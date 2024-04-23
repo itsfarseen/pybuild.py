@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+##############################################
+#  pybuild.py                                #
+#  ==========                                #
+#  A thin wrapper around requirements.txt    #
+#  to auto-remove unused transitive deps.    #
+#                                            #
+#  GitHub:                                   #
+#  https://github.com/itsfarseen/pybuild.py  #
+##############################################
+
 import json
 import subprocess as sp
 import sys
